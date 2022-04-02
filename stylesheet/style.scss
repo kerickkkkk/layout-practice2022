@@ -32,15 +32,25 @@ $primary-color: #f65936;
   bottom: 0;
   left: 0;
 }
+@mixin translate-absolute-middle{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 * {
   margin: 0;
   padding: 0;
   list-style: none;
+  // 先擋一下 x 軸
+  box-sizing: border-box;
 }
 img {
   max-width: 100%;
   height: auto;
   object-fit: cover;
+  object-position: center center;
   vertical-align: middle;
 }
 a {
@@ -96,6 +106,7 @@ a {
       margin-right: 0.5rem;
     }
     .sub {
+      font-weight: normal;
       font-size: 14px;
     }
     .link {
@@ -114,6 +125,12 @@ a {
     }
     .wrap {
       width: 50%;
+      .card{
+        .img > img{
+          width: 100%;
+          height: 100%;
+        }
+      }
       &:first-child {
         .card {
           padding: {
@@ -121,6 +138,9 @@ a {
             right: 0.5rem;
           }
           box-sizing: border-box;
+          .img{
+            aspect-ratio: 6/4;
+          }
           &__body {
             display: flex;
             .title,
@@ -147,6 +167,9 @@ a {
             left: 0.5rem;
             right: 0.5rem;
           }
+          .img{
+            aspect-ratio: 3/2;
+          }
           box-sizing: border-box;
           &__body {
             .title {
@@ -169,9 +192,12 @@ a {
         margin-left: 5px;
       }
     }
+    
     .img,
     .img img {
       border-radius: 15px;
+    }
+    .img{
       margin-bottom: 15px;
     }
   }
@@ -237,7 +263,7 @@ a {
     font-size: 14px;
   }
 }
-header {
+.header {
   position: sticky;
   top: -110px;
   z-index: 999;
@@ -245,35 +271,30 @@ header {
 }
 .navTop {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
   padding: {
     top: 25px;
     bottom: 25px;
-  }
-  a {
-    display: inline-block;
+    right: 35px;
+    left: 35px;
   }
   &__info {
-    width: calc(100% / 3);
     font-size: 12px;
     display: flex;
     align-items: center;
     > .searchIcon {
-      padding: {
-        left: 35px;
+      margin: {
+        // left: 35px;
         right: 35px;
       }
     }
   }
   > .logo {
-    width: calc(100% / 3);
-    text-align: center;
+    margin: 0 auto;
   }
   &__images {
-    width: calc(100% / 3);
     text-align: right;
-    margin-right: 35px;
     img {
       max-width: 120px;
     }
@@ -290,8 +311,8 @@ header {
   }
   font-size: 14px;
   border: {
-    top: 1px solid rgb(34, 34, 34);
-    bottom: 1px solid rgb(34, 34, 34);
+    top: 1px solid rgba(0, 0, 0, 0.12);
+    bottom: 1px solid rgba(0, 0, 0, 0.12);
   }
   &__about a {
     color: #f65936;
@@ -311,7 +332,6 @@ header {
       > a {
         height: 100%;
         &:hover {
-          opacity: 1;
           &::after {
             height: 4px;
             opacity: 1;
@@ -320,11 +340,11 @@ header {
         &::after {
           content: "";
           position: absolute;
-          background-color: #000;
-          bottom: 0;
+          bottom: -1px;
           left: 0;
           right: 0;
           height: 0px;
+          background-color: #000;
           opacity: 0;
           transition: all 0.4s;
         }
@@ -380,7 +400,7 @@ header {
       display: flex;
       justify-content: end;
     }
-    .w-20 {
+    .content__wrap{
       width: 20%;
     }
     .icon {
@@ -740,6 +760,46 @@ header {
   padding: {
     top: 96px;
     bottom: 96px;
+  }
+  .card{
+    .img{
+      position: relative;
+      .playIcon{
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+
+        padding: 24px;
+        border: 1px solid $primary-color;
+        border-radius: 50%;
+        &::after{
+          content: url(../images/triangle_right.svg);
+          @include translate-absolute-middle;
+          margin: {
+            top: 2px;
+            left: 2px;
+          }
+        }
+      }
+      // 需要調整 方塊沒有往下對其 整在一起導致三角形推不開
+      // &::after{
+      //   content: '△';
+      //   position: absolute;
+      //   // background-image: url('../images/triangle_right.svg');
+      //   // @include bg-cover;
+      //   bottom: 20px;
+      //   right: 20px;
+      //   // 修正寬度，但是會歪掉
+      //   width: 20px;
+      //   color: $primary-color;
+      //   transform: rotate(90deg);
+      //   border: 1px solid $primary-color;
+      //   border-radius: 50%;
+      //   padding: 1rem;
+      // }
+
+
+    }
   }
 }
 
