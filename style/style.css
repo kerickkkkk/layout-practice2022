@@ -118,6 +118,23 @@ a {
   height: 100%;
 }
 
+.homeBox__list .wrap .card .sub {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.homeBox__list .wrap .card .sub::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(80%, transparent), to(white));
+  background-image: linear-gradient(to right, transparent 80%, white 100%);
+}
+
 .homeBox__list .wrap:first-child .card {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -642,13 +659,13 @@ a {
 }
 
 .future__about__list__item .txt {
-  font-size: 14px;
-  opacity: 0;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
   position: relative;
   z-index: 10;
   margin-bottom: 24px;
+  opacity: 0;
+  font-size: 14px;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
 }
 
 .future__about__list__item .small {
@@ -783,36 +800,41 @@ a {
 }
 
 .communuties__list:nth-child(even) {
-  -webkit-transform: translateX(100px);
-          transform: translateX(100px);
+  -webkit-transform: translateX(-100px);
+          transform: translateX(-100px);
 }
 
 .communuties__list__item {
-  background-color: #fff;
-  border-radius: 5px;
   margin-left: 7.5px;
   margin-right: 7.5px;
+  background-color: #fff;
+  border-radius: 5px;
 }
 
-.communuties__list__item a {
-  width: 200px;
-  padding: 16px;
-  font-size: 12px;
+.communuties__list__item .link {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 170px;
+  padding: 16px;
+  font-size: 12px;
   height: 100%;
 }
 
-.communuties__list__item a .img {
+.communuties__list__item .img {
   width: 50%;
   margin: 0 auto;
+  padding-bottom: 10px;
   margin-bottom: auto;
+  aspect-ratio: 1/1;
 }
 
-.communuties__list__item a span {
+.communuties__list__item .img > img {
+  height: 100%;
   width: 100%;
 }
 
@@ -913,6 +935,20 @@ a {
 .footer__list ul:nth-child(4) li {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.footer__list ul:not(:last-child) .link > span:first-child {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.footer__list ul:not(:last-child) .link > span:nth-child(2) {
+  font-size: 14px;
+}
+
+.footer__list ul:not(:last-child) .link:hover {
+  opacity: 1;
+  color: #f65936;
 }
 
 .footer__footer {
