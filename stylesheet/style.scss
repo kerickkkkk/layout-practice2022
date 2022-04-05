@@ -132,6 +132,10 @@ a {
         }
         .sub{
           position: relative;
+          overflow: hidden;
+          .txt{
+            white-space: nowrap;
+          }
           &::after{
             content:"";
             // display block 時 非 absolute
@@ -284,7 +288,6 @@ a {
 }
 .navTop {
   display: flex;
-  // justify-content: space-between;
   align-items: center;
   padding: {
     top: 25px;
@@ -298,7 +301,6 @@ a {
     align-items: center;
     > .searchIcon {
       margin: {
-        // left: 35px;
         right: 35px;
       }
     }
@@ -393,9 +395,7 @@ a {
   .content {
     display: flex;
     position: relative;
-    //
     margin-top: -3%;
-    // transform: translateY(-5%);
     .img {
       width: 67%;
       img {
